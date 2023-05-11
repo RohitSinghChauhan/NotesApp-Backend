@@ -39,7 +39,7 @@ userRoute.post('/login', async (req, res) => {
             bcrypt.compare(password, hashed_password, function (err, result) {
                 if (result) {
                     const token = jwt.sign({ userID: user._id }, 'hush');
-                    res.send({ 'msg': 'Login successful', 'token': token });
+                    res.send({ 'msg': 'Login successful', 'token': token, 'userID': user._id });   /*SENDING userID*/
                 } else {
                     res.send({ 'msg': 'Invalid password' });
                 }
