@@ -7,7 +7,7 @@ const UserModel = require('../models/user.model');
 const userRoute = Router();
 
 userRoute.post('/signup', async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.query;
 
     try {
         const userAlreadyExists = await UserModel.findOne({ email });
@@ -28,7 +28,7 @@ userRoute.post('/signup', async (req, res) => {
 });
 
 userRoute.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.query;
 
     try {
         const user = await UserModel.findOne({ email });
