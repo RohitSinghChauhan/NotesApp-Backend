@@ -16,7 +16,7 @@ notesRoute.get('/', async (req, res) => {
 });
 
 notesRoute.post('/create', async (req, res) => {
-    const payload = req.body;
+    const payload = req.query;
     try {
         await NotesModel.create(payload);
         res.send({ 'msg': 'Note created successfully' });
@@ -29,8 +29,8 @@ notesRoute.post('/create', async (req, res) => {
 
 notesRoute.patch('/update/:noteID', async (req, res) => {
     const noteID = req.params.noteID;
-    const payload = req.body;
-    const userID = req.body.userID;
+    const payload = req.query;
+    const userID = req.query.userID;
 
     try {
         const note = await NotesModel.findOne({ _id: noteID });
@@ -51,7 +51,7 @@ notesRoute.patch('/update/:noteID', async (req, res) => {
 
 notesRoute.delete('/delete/:noteID', async (req, res) => {
     const noteID = req.params.noteID;
-    const userID = req.body.userID;
+    const userID = req.query.userID;
 
     try {
         const note = await NotesModel.findOne({ _id: noteID });
